@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Parent Registration — Smart Brains Kenya</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: #F0F4FF;
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 28px 16px 48px;
+  }
+
+  .wrapper {
+    width: 100%;
+    max-width: 420px;
+  }
+
+  /* HEADER */
+  .form-header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .form-header h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: 28px;
+    font-weight: 800;
+    color: rgb(36, 31, 102);
+    margin-bottom: 4px;
+  }
+  .form-header p {
+    font-size: 13px;
+    color: #9CA3AF;
+  }
+
+  /* FORM CARD */
+  .card {
+    background: white;
+    border-radius: 20px;
+    padding: 20px;
+    margin-bottom: 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+  }
+
+  .card-section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: #1054b8;
+    letter-spacing: 0.4px;
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #F3F4F6;
+  }
+
+  /* USERNAME ZONE */
+  .username-card {
+    background: white;
+    border: 2px solid #71a2eb;
+    border-radius: 20px;
+    padding: 18px;
+    margin-bottom: 12px;
+    box-shadow: 0 2px 10px rgba(109,40,217,0.08);
+  }
+  .username-card-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+  .start-badge {
+    background: #1556b7;
+    color: white;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.6px;
+    padding: 4px 10px;
+    border-radius: 100px;
+    white-space: nowrap;
+  }
+  .username-card-head h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: #1E1B4B;
+  }
+
+  .gentle-notice {
+    background: #F5F3FF;
+    border-radius: 10px;
+    padding: 11px 13px;
+    margin-bottom: 12px;
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+  }
+  .gentle-notice .ni { font-size: 14px; flex-shrink:0; margin-top:1px; }
+  .gentle-notice p {
+    font-size: 12.5px;
+    color: #174386;
+    line-height: 1.55;
+    font-weight: 600;
+  }
+
+  /* FIELDS */
+  .field { margin-bottom: 12px; }
+  .field:last-child { margin-bottom: 0; }
+  .field label {
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+    color: #374151;
+    margin-bottom: 6px;
+  }
+  .field input, .field select {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1.5px solid #E5E7EB;
+    border-radius: 11px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 14px;
+    color: #111827;
+    background: white;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    -webkit-appearance: none;
+  }
+  .field input::placeholder { color: #C4C4C4; }
+  .field input:focus {
+    border-color: #2165c9;
+    box-shadow: 0 0 0 3px rgba(109,40,217,0.08);
+  }
+
+  .username-input {
+    font-family: monospace !important;
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    color: #1E1B4B !important;
+    letter-spacing: 0.5px;
+    border-color: #71a2eb !important;
+  }
+  .username-input:focus {
+    border-color: #2165c9 !important;
+    box-shadow: 0 0 0 3px rgba(109,40,217,0.1) !important;
+  }
+  .username-input::placeholder {
+    font-family: monospace;
+    font-weight: 400;
+    font-size: 13px;
+    color: #BCBCBC !important;
+    letter-spacing: 0;
+  }
+
+  .field-hint {
+    font-size: 11.5px;
+    color: #f7bc5f;
+    margin-top: 5px;
+    line-height: 1.5;
+    display: flex;
+    gap: 4px;
+    font-weight: 700;
+  }
+
+  /* TWO COL */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+  /* PHONE */
+  .phone-row { display: flex; gap: 8px; }
+  .phone-prefix {
+    flex-shrink: 0;
+    width: 64px;
+    padding: 12px 8px;
+    border: 1.5px solid #E5E7EB;
+    border-radius: 11px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: #374151;
+    background: #F9FAFB;
+    text-align: center;
+  }
+  .phone-row input { flex: 1; }
+
+  /* ROLE TOGGLE */
+  .role-toggle { display: flex; gap: 6px; }
+  .role-btn {
+    flex: 1;
+    padding: 10px 4px;
+    border: 1.5px solid #E5E7EB;
+    border-radius: 10px;
+    background: white;
+    font-family: 'Nunito', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: #9CA3AF;
+    cursor: pointer;
+    transition: all 0.15s;
+    text-align: center;
+  }
+  .role-btn.active {
+    border-color: #1054b8;
+    background: #F5F3FF;
+    color: #1054b8;
+  }
+
+  /* PASSWORD */
+  .pw-wrap { position: relative; }
+  .pw-wrap input { padding-right: 44px; }
+  .pw-toggle {
+    position: absolute;
+    right: 12px; top: 50%;
+    transform: translateY(-50%);
+    background: none; border: none;
+    cursor: pointer; color: #9CA3AF;
+    font-size: 16px; padding: 4px; line-height:1;
+  }
+
+  /* CHECKBOX */
+  .check-row {
+    display: flex; align-items: flex-start;
+    gap: 10px; margin-bottom: 16px;
+  }
+  .check-row input[type=checkbox] {
+    width: 18px; height: 18px;
+    flex-shrink: 0; margin-top: 2px;
+    accent-color: #1054b8; cursor: pointer;
+  }
+  .check-row label {
+    font-size: 12px; color: #6B7280;
+    line-height: 1.5; cursor: pointer;
+  }
+  .check-row label a { color: #1054b8; font-weight: 700; }
+
+  /* SUBMIT */
+  .btn-submit {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(135deg, #11499c, #134896);
+    color: white;
+    border: none;
+    border-radius: 13px;
+    font-family: 'Syne', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(109,40,217,0.35);
+    transition: opacity 0.2s, transform 0.1s;
+    letter-spacing: 0.3px;
+  }
+  .btn-submit:hover { opacity: 0.92; }
+  .btn-submit:active { transform: scale(0.98); }
+
+  .login-link {
+    text-align: center; margin-top: 14px;
+    font-size: 13px; color: #9CA3AF;
+  }
+  .login-link a { color: #1054b8; font-weight: 700; text-decoration: none; }
+
+  @media (max-width: 360px) {
+    .two-col { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <div class="form-header">
+    <h1>Parent Registration</h1>
+    <p>Tell us about yourself to get started</p>
+  </div>
+
+  <form>
+
+    <!-- USERNAME FIRST -->
+    <div class="username-card">
+      <div class="username-card-head">
+        <span class="start-badge">✦ START HERE</span>
+        <h3>Child's Student Username</h3>
+      </div>
+      <div class="gentle-notice">
+        <span class="ni">💙</span>
+        <p>Kindly ask your child to write their username for you. A wrong username cannot be processed — it will need admin correction and may cause delays.</p>
+      </div>
+      <div class="field">
+        <input class="username-input" type="text" placeholder="e.g. ra-duanekibet" autocomplete="off" autocapitalize="none" spellcheck="false"/>
+        <div class="field-hint">💡 Have your child try logging in to the Student Section first — if it works, that's the correct username.</div>
+      </div>
+    </div>
+
+    <!-- SCHOOL -->
+    <div class="card">
+      <div class="card-section-title">School Information</div>
+      <div class="field" style="margin-bottom:0;">
+        <label>School Name</label>
+        <input type="text" placeholder="e.g. Mother Theresa Fantoni"/>
+        <div class="field-hint">ℹ️ The school where your child attends coding classes.</div>
+      </div>
+    </div>
+
+    <!-- PERSONAL DETAILS -->
+    <div class="card">
+      <div class="card-section-title">Your Details</div>
+
+      <div class="two-col">
+        <div class="field">
+          <label>Parent First Name</label>
+          <input type="text" placeholder="e.g. Grace"/>
+        </div>
+        <div class="field">
+          <label>Parent Last Name</label>
+          <input type="text" placeholder="e.g. Wanjiku"/>
+        </div>
+      </div> 
+
+      <div class="field">
+        <label>Email Address</label>
+        <input type="email" placeholder="you@example.com"/>
+      </div>
+
+      <div class="field">
+        <label>I am the</label>
+        <div class="role-toggle">
+          <div class="role-btn active" onclick="setRole(this)">Mom</div>
+          <div class="role-btn" onclick="setRole(this)">Dad</div>
+          <div class="role-btn" onclick="setRole(this)">Guardian</div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>WhatsApp Number</label>
+        <div class="phone-row">
+          <div class="phone-prefix">+254</div>
+          <input type="tel" placeholder="712345678" maxlength="9" inputmode="numeric"/>
+        </div>
+        <div class="field-hint">ℹ️ Without the leading zero. E.g. 0712345678 → enter 712345678. This will be your login username.</div>
+      </div>
+
+      <div class="two-col">
+        <div class="field">
+          <label>Password</label>
+          <div class="pw-wrap">
+            <input type="password" id="pw1" placeholder="Password"/>
+            <button type="button" class="pw-toggle" onclick="togglePw('pw1',this)">👁</button>
+          </div>
+        </div>
+        <div class="field">
+          <label>Confirm</label>
+          <div class="pw-wrap">
+            <input type="password" id="pw2" placeholder="Confirm"/>
+            <button type="button" class="pw-toggle" onclick="togglePw('pw2',this)">👁</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- AGREE & SUBMIT -->
+    <div class="check-row">
+      <input type="checkbox" id="agree"/>
+      <label for="agree">
+        I agree to receive updates on WhatsApp &amp; <a href="#">Terms &amp; Conditions</a> and acknowledge the <a href="#">Privacy Policy</a>
+      </label>
+    </div>
+
+    <button class="btn-submit" type="submit">Create Account</button>
+
+    <div class="login-link">
+      Already have an account? <a href="./login-v2.html">Log in</a>
+    </div>
+
+  </form>
+</div>
+
+<script>
+  function setRole(el) {
+    document.querySelectorAll('.role-btn').forEach(b => b.classList.remove('active'));
+    el.classList.add('active');
+  }
+  function togglePw(id, btn) {
+    const input = document.getElementById(id);
+    input.type = input.type === 'password' ? 'text' : 'password';
+    btn.textContent = input.type === 'password' ? '👁' : '🙈';
+  }
+</script>
+</body>
+</html>

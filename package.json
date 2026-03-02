@@ -1,0 +1,17 @@
+{
+  "name": "parent-dashboard",
+  "version": "1.0.0",
+  "description": "Parent Dashboard for Smart Brains Kenya",
+  "main": "index.html",
+  "scripts": {
+    "dev": "npx http-server",
+    "build": "echo 'Static site - no build required'"
+  },
+  "keywords": [
+    "parent",
+    "dashboard",
+    "education"
+  ],
+  "author": "",
+  "license": "ISC"
+}
